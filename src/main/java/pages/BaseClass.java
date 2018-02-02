@@ -8,6 +8,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.PageFactory;
 import util.TestProperties;
@@ -19,6 +20,44 @@ import java.util.concurrent.TimeUnit;
 import static org.junit.Assert.assertEquals;
 
 public class BaseClass {
+    public static WebDriver getDriver() {
+        return driver;
+    }
+
+    public static WebDriver driver;
+
+    @Before
+    public void webDriver() {
+        System.setProperty("webdriver.chrome.driver","drv/chromedriver.exe");
+        ChromeOptions co = new ChromeOptions();
+        co.addArguments("start-maximized");
+        driver = new ChromeDriver(co);
+        driver.get("https://www.yandex.ru/");
+        driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+        driver.manage().timeouts().pageLoadTimeout(20, TimeUnit.SECONDS);
+        driver.manage().timeouts().setScriptTimeout(20, TimeUnit.SECONDS);
+
+    }
+    @After
+    public void tearDown(){
+        if(driver != null){
+            driver.quit();
+        }}
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+    /*
     protected static WebDriver driver;
     protected static String baseUrl;
     public static Properties properties = TestProperties.getInstance().getProperties();
@@ -69,4 +108,4 @@ public class BaseClass {
     }
 
 
-}
+}*/
