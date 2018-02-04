@@ -1,20 +1,13 @@
-package pages;
+package steps;
 
-import org.junit.After;
-import org.junit.AfterClass;
-import org.junit.Before;
-import org.junit.BeforeClass;
-import org.openqa.selenium.By;
+import cucumber.api.java.After;
+import cucumber.api.java.Before;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
-import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.PageFactory;
-import util.TestProperties;
 
-import java.util.NoSuchElementException;
-import java.util.Properties;
 import java.util.concurrent.TimeUnit;
 
 import static org.junit.Assert.assertEquals;
@@ -25,6 +18,7 @@ public class BaseClass {
     }
 
     public static WebDriver driver;
+
 
     @Before
     public void webDriver() {
@@ -43,6 +37,8 @@ public class BaseClass {
         if(driver != null){
             driver.quit();
         }}
+
+
 
 }
 
