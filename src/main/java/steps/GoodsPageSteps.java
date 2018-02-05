@@ -31,11 +31,6 @@ public class GoodsPageSteps {
         new GoodsPage().countItems2();
     }
 
-    @Step("сохранено название товара")
-    public void stepSaveText() {
-        new GoodsPage().saveText();
-    }
-
     @Step("ожидание загрузки страницы")
     public void stepSleep() {
         new GoodsPage().sleep();

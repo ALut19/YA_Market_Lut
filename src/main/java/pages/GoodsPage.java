@@ -15,7 +15,7 @@ import steps.BaseClass;
  */
 public class GoodsPage extends BaseClass {
 
-    String first;
+    public String first;
 
     @FindBy(name = "glf-pricefrom-var")
     WebElement priceFrom;
@@ -36,7 +36,7 @@ public class GoodsPage extends BaseClass {
     WebElement tvItems;
 
     @FindBy(xpath = ".//div[@class='headline__header']")
-    WebElement headfonsTitle;
+    WebElement customTitle;
 
     @FindBy(name = "text")
     WebElement searchBox;
@@ -86,19 +86,12 @@ public class GoodsPage extends BaseClass {
         applyButton.click();
     }
 
+    //сравнение количества элементов на странице для телевизоров
     public void countItems(){
-        ((JavascriptExecutor) BaseClass.getDriver()).executeScript("arguments[0].scrollIntoView();", headfonsTitle);
-        try {
-            Thread.sleep(8000);
             List<WebElement> list = BaseClass.getDriver().findElements(By.xpath(".//div[@class='n-snippet-card2__title']"));
             System.out.println(list.size());
             System.out.println(list);
             assertThat(12, equalTo(list.size()));
-        }catch (InterruptedException c){
-            c.printStackTrace();
-        }
-        first = BaseClass.getDriver().findElement(By.xpath(".//div[@class='n-snippet-card2__title'][1]")).getText();
-        System.out.println("первый товар в списке " + first);
     }
 
     public void sleep(){
@@ -109,25 +102,33 @@ public class GoodsPage extends BaseClass {
 
     }}
 
+    //сравнение количества элементов для наушников
     public void countItems2(){
-        ((JavascriptExecutor) BaseClass.getDriver()).executeScript("arguments[0].scrollIntoView();", headfonsTitle);
-
-            List<WebElement> list = BaseClass.getDriver().findElements(By.xpath(".//div[@class='n-snippet-cell2__title']"));
+        ((JavascriptExecutor) BaseClass.getDriver()).executeScript("arguments[0].scrollIntoView();", customTitle);
+        try {
+            Thread.sleep(8000);
+            List<WebElement> list = BaseClass.getDriver().findElements(By.xpath(".//div[@class='n-snippet-card2__title']"));
             System.out.println(list.size());
             System.out.println(list);
             assertThat(12, equalTo(list.size()));
+        }catch (InterruptedException c){
+            c.printStackTrace();
+        }
     }
 
-    public String saveText(){
-        first = BaseClass.getDriver().findElement(By.xpath(".//div[@class='n-snippet-cell2__title'][1]")).getText();
-        System.out.println("первый товар в списке " + first);
-        return first;
+    //сохранение и передача текста
+    public void setSearchBox() {
+        ((JavascriptExecutor) BaseClass.getDriver()).executeScript("arguments[0].scrollIntoView();", customTitle);
+        try {
+            Thread.sleep(5000);
+            first = BaseClass.getDriver().findElement(By.xpath(".//div[@class='n-snippet-card2__part n-snippet-card2__part_type_center']/div[@class='n-snippet-card2__header n-snippet-card2__header_has_rating']/div[@class='n-snippet-card2__title']/a")).getText();
+            System.out.println("первый товар в списке " + first);
+            ((JavascriptExecutor) BaseClass.getDriver()).executeScript("arguments[0].scrollIntoView();", searchBox);
+            searchBox.sendKeys(first);
+        } catch (InterruptedException c) {
+            c.printStackTrace();
+        }
     }
-
-    public void setSearchBox(){
-        ((JavascriptExecutor) BaseClass.getDriver()).executeScript("arguments[0].scrollIntoView();", searchBox);
-            searchBox.sendKeys(saveText());
- }
 
     public void setSearchButton(){searchButton.click();}
 

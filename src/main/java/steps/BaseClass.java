@@ -32,11 +32,11 @@ public class BaseClass {
         driver.manage().timeouts().setScriptTimeout(20, TimeUnit.SECONDS);
 
     }
-    @After
-    public void tearDown(){
-        if(driver != null){
-            driver.quit();
-        }}
+   // @After
+  //  public void tearDown(){
+    //    if(driver != null){
+      //      driver.quit();
+     //   }}
 
 
 
