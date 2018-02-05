@@ -11,27 +11,11 @@ public class GoodsPageSteps {
         new GoodsPage().setPriceFrom(price);
     }
 
-    /*
-        @Step("выбран чекбокс LG")
-        public void stepSetCheckboxLG(){
-            new GoodsPage().setCheckboxLG();
-        }
-
-        @Step("выбран чекбокс Samsung")
-        public void stepSetCheckboxSamsung(){
-            new GoodsPage().setCheckboxSamsung();
-        }
-
-        @Step("выбран чекбокс Beats")
-        public void stepSetCheckboxBeats(){
-            new GoodsPage().setCheckboxBeats();
-        }
-    */
-
     @Step("Выбран чекбокс")
     public void stepClickCheckbox(String elementName) {
         new GoodsPage().clickCheckbox(elementName);
     }
+
     @Step("выполнено нажатие на кнопку Применить")
     public void stepSetApplyButton() {
         new GoodsPage().setApplyButton();

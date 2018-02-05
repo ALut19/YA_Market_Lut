@@ -38,9 +38,9 @@ public class ScenarioSteps {
                 (fieldName, price) -> goodsPageSteps.stepSetPriceFrom(price));
     }
 
-   // @When("^выбран чекбокс")
-   // public void stepClickcheckbox(Data elementName){
-   //     List<String> list = goodsPageSteps.stepClickChec;}
+    @When("^выбран чекбокс \"(.*)\"$")
+    public void stepClickcheckbox(String elementName){
+        goodsPageSteps.stepClickCheckbox(elementName);}
 
     @When("^выполнено нажатие на кнопку Применить")
     public void stepSetApplyButton() {
