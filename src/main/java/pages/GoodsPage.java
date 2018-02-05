@@ -118,14 +118,15 @@ public class GoodsPage extends BaseClass {
             assertThat(12, equalTo(list.size()));
     }
 
-    public void saveText(){
+    public String saveText(){
         first = BaseClass.getDriver().findElement(By.xpath(".//div[@class='n-snippet-cell2__title'][1]")).getText();
         System.out.println("первый товар в списке " + first);
+        return first;
     }
 
     public void setSearchBox(){
         ((JavascriptExecutor) BaseClass.getDriver()).executeScript("arguments[0].scrollIntoView();", searchBox);
-            searchBox.sendKeys(first);
+            searchBox.sendKeys(saveText());
  }
 
     public void setSearchButton(){searchButton.click();}
