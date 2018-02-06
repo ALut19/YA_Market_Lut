@@ -84,9 +84,8 @@ public class GoodsPage extends BaseClass {
         switch (name) {
             case "телевизор":
                 List<WebElement> list = BaseClass.getDriver().findElements(By.xpath(".//div[@class='n-snippet-card2__title']"));
-                System.out.println(list.size());
-                System.out.println(list);
-                assertThat(12, equalTo("колличество товаров на странице = " + list.size()));
+                System.out.println("колличество товаров на странице = " + list.size());
+                assertThat(12, equalTo(list.size()));
                 break;
             case "наушники":
                 ((JavascriptExecutor) BaseClass.getDriver()).executeScript("arguments[0].scrollIntoView();", customTitle);
