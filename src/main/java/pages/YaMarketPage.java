@@ -6,7 +6,7 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import steps.BaseClass;
 
-public class YaMarketPage extends BasePageObject {
+public class YaMarketPage extends BaseClass {
 
     @FindBy(xpath = ".//li[@data-department='Электроника']")
     WebElement electronics;

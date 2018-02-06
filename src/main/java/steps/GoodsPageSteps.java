@@ -6,49 +6,51 @@ import ru.yandex.qatools.allure.annotations.Step;
 
 public class GoodsPageSteps {
 
+    GoodsPage goodsPage = new GoodsPage();
+
     @Step("выбрана цена от")
     public void stepSetPriceFrom(String price) {
-        new GoodsPage().setPriceFrom(price);
+        goodsPage.setPriceFrom(price);
     }
 
     @Step("Выбран чекбокс")
     public void stepClickCheckbox(String elementName) {
-        new GoodsPage().clickCheckbox(elementName);
+        goodsPage.clickCheckbox(elementName);
     }
 
     @Step("выполнено нажатие на кнопку Применить")
     public void stepSetApplyButton() {
-        new GoodsPage().setApplyButton();
+        goodsPage.setApplyButton();
     }
 
     @Step("на странице отображается 12 товаров - телевизор")
     public void stepCountItems() {
-        new GoodsPage().countItems();
+        goodsPage.countItems();
     }
 
     @Step("на странице отображается 12 товаров - наушники")
     public void stepCountItems2() {
-        new GoodsPage().countItems2();
+        goodsPage.countItems2();
     }
 
     @Step("ожидание загрузки страницы")
     public void stepSleep() {
-        new GoodsPage().sleep();
+        goodsPage.sleep();
     }
 
-    @Step("в форму поиска введено название товара")
-    public void stepSetSearchBox() {
-        new GoodsPage().setSearchBox();
+    @Step("Выбран чекбокс")
+    public void stepSendSearchbox(String item) {
+        goodsPage.sendSearchbox(item);
     }
 
     @Step("нажата кнопка найти")
     public void stepSetSearchButton() {
-        new GoodsPage().setSearchButton();
+         goodsPage.setSearchButton();
     }
 
     @Step("заголовок соответсвует ранее введенному в форму поиска")
     public void stepSetTitle() {
-        new GoodsPage().setTitle();
+        goodsPage.setTitle();
     }
 
 }

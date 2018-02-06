@@ -62,12 +62,12 @@ public class ScenarioSteps {
         goodsPageSteps.stepSleep();
     }
 
-    @When("в форму поиска введено название товара")
-    public void stepSetSearchBox() {
-        goodsPageSteps.stepSetSearchBox();
+    @When("в форму поиска введено название товара \"(.*)\"$")
+    public void stepSendSearchbox(String item) {
+        goodsPageSteps.stepSendSearchbox(item);
     }
 
-    @When("нажата кнопка найти")
+    @When("^выполнено нажатие на кнопку Найти")
     public void stepSetSearchButton() {
         goodsPageSteps.stepSetSearchButton();
     }

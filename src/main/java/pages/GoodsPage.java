@@ -10,12 +10,19 @@ import static org.hamcrest.CoreMatchers.equalTo;
 import static org.junit.Assert.assertThat;
 import steps.BaseClass;
 
-/**
- * Created by user on 02.02.2018.
- */
 public class GoodsPage extends BaseClass {
 
-    public String first;
+    private String first;
+
+    public void setFirst(String name)
+    {
+        first = name;
+    }
+
+    public String getFirst()
+    {
+        return first;
+    }
 
     @FindBy(name = "glf-pricefrom-var")
     WebElement priceFrom;
@@ -96,43 +103,84 @@ public class GoodsPage extends BaseClass {
 
     public void sleep(){
         try {
-            Thread.sleep(8000);
+            Thread.sleep(2000);
         }catch (InterruptedException c){
             c.printStackTrace();
-
-    }}
+    }
+    }
 
     //сравнение количества элементов для наушников
     public void countItems2(){
         ((JavascriptExecutor) BaseClass.getDriver()).executeScript("arguments[0].scrollIntoView();", customTitle);
-        try {
-            Thread.sleep(8000);
-            List<WebElement> list = BaseClass.getDriver().findElements(By.xpath(".//div[@class='n-snippet-card2__title']"));
+            List<WebElement> list = BaseClass.getDriver().findElements(By.xpath(".//div[@class='n-snippet-cell2__title']"));
             System.out.println(list.size());
             System.out.println(list);
             assertThat(12, equalTo(list.size()));
-        }catch (InterruptedException c){
-            c.printStackTrace();
         }
-    }
 
-    //сохранение и передача текста
-    public void setSearchBox() {
+
+    //сохранение и передача текста для Телевизоров
+    public void setSearchBoxTv() {
         ((JavascriptExecutor) BaseClass.getDriver()).executeScript("arguments[0].scrollIntoView();", customTitle);
         try {
             Thread.sleep(5000);
-            first = BaseClass.getDriver().findElement(By.xpath(".//div[@class='n-snippet-card2__part n-snippet-card2__part_type_center']/div[@class='n-snippet-card2__header n-snippet-card2__header_has_rating']/div[@class='n-snippet-card2__title']/a")).getText();
-            System.out.println("первый товар в списке " + first);
+            setFirst(BaseClass.getDriver().findElement(By.xpath(".//div[@class='n-snippet-card2__title']/a")).getText());
+            System.out.println("первый товар в списке " + getFirst());
             ((JavascriptExecutor) BaseClass.getDriver()).executeScript("arguments[0].scrollIntoView();", searchBox);
-            searchBox.sendKeys(first);
+            searchBox.sendKeys(getFirst());
         } catch (InterruptedException c) {
             c.printStackTrace();
         }
     }
 
+    //сохранение и передача текста для Наушников
+    public void setSearchBoxHf() {
+        ((JavascriptExecutor) BaseClass.getDriver()).executeScript("arguments[0].scrollIntoView();", customTitle);
+        try {
+            Thread.sleep(5000);
+            setFirst(BaseClass.getDriver().findElement(By.xpath(".//div[@class='n-snippet-cell2__title']/a")).getText());
+            System.out.println("первый товар в списке " + getFirst());
+            ((JavascriptExecutor) BaseClass.getDriver()).executeScript("arguments[0].scrollIntoView();", searchBox);
+            searchBox.sendKeys("\"" +  getFirst() + "\"");
+        } catch (InterruptedException c) {
+            c.printStackTrace();
+        }
+    }
+
+    //СОХРАНЕНИЕ И ПЕРЕДАЧА Текста
+    public void sendSearchbox(String item) {
+        switch (item) {
+            case "телевизор":
+                ((JavascriptExecutor) BaseClass.getDriver()).executeScript("arguments[0].scrollIntoView();", customTitle);
+                try {
+                    Thread.sleep(5000);
+                    setFirst(BaseClass.getDriver().findElement(By.xpath(".//div[@class='n-snippet-card2__title']/a")).getText());
+                    System.out.println("первый товар в списке " + getFirst());
+                    ((JavascriptExecutor) BaseClass.getDriver()).executeScript("arguments[0].scrollIntoView();", searchBox);
+                    searchBox.sendKeys("\"" +  getFirst() + "\"");
+                } catch (InterruptedException c) {
+                    c.printStackTrace();
+                }
+                break;
+            case "наушники":
+                ((JavascriptExecutor) BaseClass.getDriver()).executeScript("arguments[0].scrollIntoView();", customTitle);
+                try {
+                    Thread.sleep(5000);
+                    setFirst(BaseClass.getDriver().findElement(By.xpath(".//div[@class='n-snippet-cell2__title']/a")).getText());
+                    System.out.println("первый товар в списке " + getFirst());
+                    ((JavascriptExecutor) BaseClass.getDriver()).executeScript("arguments[0].scrollIntoView();", searchBox);
+                    searchBox.sendKeys("\"" +  getFirst() + "\"");
+                } catch (InterruptedException c) {
+                    c.printStackTrace();
+                }
+                break;
+        }
+    }
+
     public void setSearchButton(){searchButton.click();}
 
-    public void setTitle(){Assert.assertTrue(title.getText().contains(first));
-        System.out.println("заголовок = " + first);}
-
+    public void setTitle(){
+        System.out.println("заголовок = " + title.getText());
+        Assert.assertTrue(title.getText().contains(getFirst()));
+        }
 }

@@ -6,11 +6,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
-import org.openqa.selenium.support.PageFactory;
-
 import java.util.concurrent.TimeUnit;
-
-import static org.junit.Assert.assertEquals;
 
 public class BaseClass {
     public static WebDriver getDriver() {
@@ -32,13 +28,15 @@ public class BaseClass {
         driver.manage().timeouts().setScriptTimeout(20, TimeUnit.SECONDS);
 
     }
-   // @After
-  //  public void tearDown(){
-    //    if(driver != null){
-      //      driver.quit();
-     //   }}
+    @After
+    public void tearDown(){
+        if(driver != null){driver.quit();
+       }
+    }
 
-
+    public void clickCheckbox(WebElement element) {
+        element.click();
+    }
 
 }
 
