@@ -24,18 +24,8 @@ public class GoodsPageSteps {
     }
 
     @Step("на странице отображается 12 товаров - телевизор")
-    public void stepCountItems() {
-        goodsPage.countItems();
-    }
-
-    @Step("на странице отображается 12 товаров - наушники")
-    public void stepCountItems2() {
-        goodsPage.countItems2();
-    }
-
-    @Step("ожидание загрузки страницы")
-    public void stepSleep() {
-        goodsPage.sleep();
+    public void stepCountItems(String name) {
+        goodsPage.countItems(name);
     }
 
     @Step("Выбран чекбокс")

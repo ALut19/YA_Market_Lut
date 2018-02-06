@@ -47,19 +47,9 @@ public class ScenarioSteps {
         goodsPageSteps.stepSetApplyButton();
     }
 
-    @When("^выполнена проверка колличества товаров телевизор на странице")
-    public void stepCountItems() {
-        goodsPageSteps.stepCountItems();
-    }
-
-    @When("^выполнена проверка колличества товаров наушники на странице")
-    public void stepCountItems2() {
-        goodsPageSteps.stepCountItems2();
-    }
-
-    @When("^ожидание загрузки")
-    public void stepSleep() {
-        goodsPageSteps.stepSleep();
+    @When("^выполнена проверка колличества товаров \"(.*)\" на странице")
+    public void stepCountItems(String name) {
+        goodsPageSteps.stepCountItems(name);
     }
 
     @When("в форму поиска введено название товара \"(.*)\"$")
